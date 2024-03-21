@@ -28,9 +28,9 @@ const uint16_t beta = 3950;
  */
 bool muestreo_periodico(struct repeating_timer *t) {
   // Lectura analogica (variable adc_value)
-
+uint16_t adc_value = adc_read();
   // Calcular valor de temperatura (variable temperatura)
-
+float temperatura = adc_value * 3.3 / 100;
 }
 
 /*
@@ -41,11 +41,11 @@ void display_temp(float temperatura) {
   // Variable para armar el string
   char str[16];
   // Armo string con temperatura
-  sprintf(str, "Temp=%.2f C", temperatura);
+  sprintf(str, "Temp=%.2f C\n", temperatura);
   // Limpio display
-  lcd_clear();
+  
   // Muestro
-  lcd_string(str);
+  printf(str);
 }
 
 /*
