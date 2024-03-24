@@ -30,7 +30,7 @@ bool muestreo_periodico(struct repeating_timer *t) {
   // Lectura analogica (variable adc_value)
 uint16_t adc_value = adc_read();
   // Calcular valor de temperatura (variable temperatura)
-float temperatura = adc_value * 3.3 / 100;
+float temperatura = 1 / (log(1 / (4095. / adc_value - 1)) / BETA + 1.0 / 298.15) - 273.15;
 }
 
 /*
@@ -45,7 +45,7 @@ void display_temp(float temperatura) {
   // Limpio display
   
   // Muestro
-  printf(str);
+  printf("%S\n");
 }
 
 /*
